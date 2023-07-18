@@ -22,7 +22,7 @@ namespace FECSim
             this.ipEndPoint = new IPEndPoint(ipAddr, port);
         }
 
-        public void start()
+        public void Start()
         {
             try
             {
@@ -37,7 +37,7 @@ namespace FECSim
             }
         }
 
-        public void recieveByteArray()
+        public void RecieveByteArray()
         {
             try
             {
@@ -49,7 +49,7 @@ namespace FECSim
             }
         }
 
-        public void stop() 
+        public void Stop() 
         { 
             sinkSocket?.Close();
         }

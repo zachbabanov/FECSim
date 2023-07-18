@@ -20,7 +20,7 @@ namespace FECSim
             this.ipEndPoint = new IPEndPoint(ipAddr, port);
         }
 
-        public void start()
+        public void Start()
         {
             try
             {
@@ -33,7 +33,7 @@ namespace FECSim
             }
         }
 
-        public void sendByteArray(byte[] byteArray)
+        public void SendByteArray(byte[] byteArray)
         {
             try
             {
@@ -45,7 +45,7 @@ namespace FECSim
             }
         }
 
-        public void sendFile(string fileName)
+        public void SendFile(string fileName)
         {
             try 
             { 
@@ -57,7 +57,7 @@ namespace FECSim
             }
         }
 
-        public void stop()
+        public void Stop()
         {
             sinkSocket?.Close();
         }
