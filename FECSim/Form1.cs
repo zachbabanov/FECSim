@@ -4,8 +4,8 @@ namespace FECSim
     {
         Sink? sink;
         Source? source;
-        private string ?choosedFilePath;
-        private string ?choosedFileName;
+        private string? choosedFilePath;
+        private string? choosedFileName;
 
         public Form1()
         {
@@ -62,6 +62,11 @@ namespace FECSim
                 sendFile.Write(sink.recievedData);
             }
             sendFile.Close();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
