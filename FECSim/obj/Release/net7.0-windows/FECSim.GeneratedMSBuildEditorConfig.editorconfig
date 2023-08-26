@@ -14,4 +14,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = FECSim
-build_property.ProjectDir = C:\Users\stiv0\Source\Repos\zachbabanov\FECSim\FECSim\
+build_property.ProjectDir = C:\Users\stiv0\source\repos\zachbabanov\FECSim\FECSim\

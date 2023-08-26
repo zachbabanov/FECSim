@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\stiv0\\source\\FECSim\\FECSim\\FECSim.csproj": {}
+    "C:\\Users\\stiv0\\Source\\Repos\\zachbabanov\\FECSim\\FECSim\\FECSim.csproj": {}
   },
   "projects": {
-    "C:\\Users\\stiv0\\source\\FECSim\\FECSim\\FECSim.csproj": {
+    "C:\\Users\\stiv0\\Source\\Repos\\zachbabanov\\FECSim\\FECSim\\FECSim.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\stiv0\\source\\FECSim\\FECSim\\FECSim.csproj",
+        "projectUniqueName": "C:\\Users\\stiv0\\Source\\Repos\\zachbabanov\\FECSim\\FECSim\\FECSim.csproj",
         "projectName": "FECSim",
-        "projectPath": "C:\\Users\\stiv0\\source\\FECSim\\FECSim\\FECSim.csproj",
+        "projectPath": "C:\\Users\\stiv0\\Source\\Repos\\zachbabanov\\FECSim\\FECSim\\FECSim.csproj",
         "packagesPath": "C:\\Users\\stiv0\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\stiv0\\source\\FECSim\\FECSim\\obj\\",
+        "outputPath": "C:\\Users\\stiv0\\Source\\Repos\\zachbabanov\\FECSim\\FECSim\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "D:\\Programs\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
           "C:\\Users\\stiv0\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
