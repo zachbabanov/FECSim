@@ -49,7 +49,6 @@ namespace FECSim
         }
 
         private Dictionary<int, byte[]> packetsRecieved = new();
-        private byte[,]? recievedSequences;
         private EncodedPacket? encodedPacket;
         private readonly Encoder encoder;
         private readonly Decoder decoder;
@@ -168,7 +167,7 @@ namespace FECSim
             catch (IndexOutOfRangeException){ }
             Debug.WriteLine("packetsRecieved object sorted");
 
-            recievedSequences = new byte[packetsRecieved.ElementAt(0).Value.Length / amountOfRecievers, amountOfRecievers];
+            byte[,] recievedSequences = new byte[packetsRecieved.ElementAt(0).Value.Length / amountOfRecievers, amountOfRecievers];
             recievedSequences = encodedPacket.FormatPacketToSequence(packetsRecieved.ElementAt(0).Value, amountOfRecievers);
             Debug.WriteLine("Recieved packets formatted to encoded data in encodedPacket object");
 
