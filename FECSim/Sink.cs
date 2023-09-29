@@ -1,57 +1,116 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Net;
 using System.Net.Sockets;
-using System.Net;
-using System.Windows.Forms.VisualStyles;
 
 namespace FECSim
 {
-    internal class Sink
+
+    /// <summary>
+    /// Set of sockets for recieving udp/tcp packets
+    /// of encoded data and decoding it until got full data
+    /// </summary>
+    public class Sink
     {
-        Socket sinkSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-        IPEndPoint ipEndPoint;
-        public byte[] recievedData = new byte[byte.MaxValue];
+        /// <summary>
+        /// Buffer to store udp packet info. 
+        /// First byte is number of sequences in single packet,
+        /// Second byte is sequence lenght
+        /// </summary>
+        private readonly byte[] tcpPacketInfoBuffer = new byte[2];
+        private int numberOfSequences;
+        private int sequenceLenght;
 
-        public Sink(int port)
+        public IPAddress sinkIpAddress;
+
+        /// <summary>
+        /// Tcp Socket for geting end to end delivery confimation 
+        /// after you get enough sequences to decode full data
+        /// </summary>
+        private readonly Socket sourceConfirmSocket;
+        private readonly IPEndPoint sourceConfirmEndPoint;
+
+        private readonly Socket sinkSocket;
+        private readonly IPEndPoint sinkEndPoint;
+
+        private readonly TcpListener portListenerInstance = new(IPAddress.Loopback, 0);
+        private int NextFreePort()
         {
-            IPHostEntry ipHost = Dns.GetHostEntry(Dns.GetHostName());
-            IPAddress ipAddr = ipHost.AddressList[3];
-            this.ipEndPoint = new IPEndPoint(ipAddr, port);
+            portListenerInstance.Start();
+            int port = ((IPEndPoint)portListenerInstance.LocalEndpoint).Port;
+            portListenerInstance.Stop();
+            return port;
         }
 
-        public void Start()
+        public IPEndPoint GetTcpEndPoint()
         {
-            try
+            return sourceConfirmEndPoint;
+        }
+
+        public IPEndPoint GetUdpEndPoint()
+        {
+            return sinkEndPoint;
+        }
+
+        /// <summary>
+        /// Creates a sink object for existing source object
+        /// so tcp sockets of sink are paired to source one's
+        /// </summary>
+        /// <param name="source">Provide an existing source object to pair tcp sockets</param>
+        public Sink(Source source)
+        {
+            sinkIpAddress = Dns.GetHostEntry(Dns.GetHostName()).AddressList[1];
+            sinkSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+            sinkEndPoint = new IPEndPoint(sinkIpAddress, NextFreePort());
+
+            sourceConfirmSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            sourceConfirmEndPoint = source.GetTcpEndPoint();
+        }
+
+        public void StartUdp()
+        {
+            sinkSocket.Bind(sinkEndPoint);
+        }
+
+        public void StartTcp()
+        {
+            sourceConfirmSocket.Connect(sourceConfirmEndPoint);
+        }
+
+        public void RecievePacketInformation()
+        {
+            sourceConfirmSocket.Receive(tcpPacketInfoBuffer);
+
+            numberOfSequences = Convert.ToInt32(tcpPacketInfoBuffer[0]);
+            sequenceLenght = Convert.ToInt32(tcpPacketInfoBuffer[1]);
+        }
+
+        /// <summary>
+        /// Recieve a specified sized array of bytes from existing source object
+        /// </summary>
+        /// <param name="array">byte array of specified size</param>
+        /// <param name="source">Existing source object, which was paired on constructor</param>
+        public void RecieveFrom(byte[] array, Source source)
+        {
+            EndPoint reference = source.GetUdpEndPoint();
+
+            if (sinkSocket.ReceiveFrom(array, array.Length, SocketFlags.None, ref reference) != 0)
             {
-                sinkSocket.Bind(ipEndPoint);
-                sinkSocket.Shutdown(SocketShutdown.Send);
-                sinkSocket.Accept();
-                sinkSocket.Listen();
+                byte[] confirm = { 0 };
+                sourceConfirmSocket.Send(confirm);
             }
-            catch (Exception ex)
+            else
             {
-                Console.WriteLine(ex.Message);
+                byte[] confirm = { 1 };
+                sourceConfirmSocket.Send(confirm);
             }
         }
 
-        public void RecieveByteArray()
+        public void Stop()
         {
-            try
-            {
-                sinkSocket.Receive(recievedData);
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
+            sourceConfirmSocket.Close();
+            sourceConfirmSocket.Dispose();
 
-        public void Stop() 
-        { 
-            sinkSocket?.Close();
+            sinkSocket.Close();
+            sinkSocket.Dispose();
         }
     }
 }

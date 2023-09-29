@@ -1,0 +1,17 @@
+C:\Users\stiv0\source\FECSim\FECSim\bin\Release\net7.0-windows\FECSim.exe
+C:\Users\stiv0\source\FECSim\FECSim\bin\Release\net7.0-windows\FECSim.deps.json
+C:\Users\stiv0\source\FECSim\FECSim\bin\Release\net7.0-windows\FECSim.runtimeconfig.json
+C:\Users\stiv0\source\FECSim\FECSim\bin\Release\net7.0-windows\FECSim.dll
+C:\Users\stiv0\source\FECSim\FECSim\bin\Release\net7.0-windows\FECSim.pdb
+C:\Users\stiv0\source\FECSim\FECSim\obj\Release\net7.0-windows\FECSim.csproj.AssemblyReference.cache
+C:\Users\stiv0\source\FECSim\FECSim\obj\Release\net7.0-windows\FECSim.Form1.resources
+C:\Users\stiv0\source\FECSim\FECSim\obj\Release\net7.0-windows\FECSim.csproj.GenerateResource.cache
+C:\Users\stiv0\source\FECSim\FECSim\obj\Release\net7.0-windows\FECSim.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\stiv0\source\FECSim\FECSim\obj\Release\net7.0-windows\FECSim.AssemblyInfoInputs.cache
+C:\Users\stiv0\source\FECSim\FECSim\obj\Release\net7.0-windows\FECSim.AssemblyInfo.cs
+C:\Users\stiv0\source\FECSim\FECSim\obj\Release\net7.0-windows\FECSim.csproj.CoreCompileInputs.cache
+C:\Users\stiv0\source\FECSim\FECSim\obj\Release\net7.0-windows\FECSim.dll
+C:\Users\stiv0\source\FECSim\FECSim\obj\Release\net7.0-windows\refint\FECSim.dll
+C:\Users\stiv0\source\FECSim\FECSim\obj\Release\net7.0-windows\FECSim.pdb
+C:\Users\stiv0\source\FECSim\FECSim\obj\Release\net7.0-windows\FECSim.genruntimeconfig.cache
+C:\Users\stiv0\source\FECSim\FECSim\obj\Release\net7.0-windows\ref\FECSim.dll
